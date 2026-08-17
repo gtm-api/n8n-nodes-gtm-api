@@ -19,7 +19,7 @@ Self-hosted n8n: Settings, Community Nodes, Install, enter `n8n-nodes-gtm-api`.
 
 ## Credentials
 
-One field: the API key. Create it at [app.gtm-api.com](https://app.gtm-api.com) (7-day trial, no card) and connect a LinkedIn account you own.
+One field: the API key. Create it at [app.gtm-api.com](https://app.gtm-api.com) (forever free plan, no card) and connect a LinkedIn account you own.
 
 ## Links
 
