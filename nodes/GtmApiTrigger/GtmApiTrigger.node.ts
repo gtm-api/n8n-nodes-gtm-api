@@ -16,7 +16,7 @@ export class GtmApiTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'gtm-api Trigger',
 		name: 'gtmApiTrigger',
-		icon: { light: 'file:gtmapi.svg', dark: 'file:gtmapi.svg' },
+		icon: { light: 'file:gtmapi.svg', dark: 'file:gtmapi.dark.svg' },
 		group: ['trigger'],
 		version: 1,
 		subtitle: '={{$parameter["event"]}}',

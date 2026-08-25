@@ -5,8 +5,11 @@ const { dirname, join } = require('path');
 
 const copies = [
   ['credentials/gtmapi.svg', 'dist/credentials/gtmapi.svg'],
+  ['credentials/gtmapi.dark.svg', 'dist/credentials/gtmapi.dark.svg'],
   ['nodes/GtmApi/gtmapi.svg', 'dist/nodes/GtmApi/gtmapi.svg'],
+  ['nodes/GtmApi/gtmapi.dark.svg', 'dist/nodes/GtmApi/gtmapi.dark.svg'],
   ['nodes/GtmApiTrigger/gtmapi.svg', 'dist/nodes/GtmApiTrigger/gtmapi.svg'],
+  ['nodes/GtmApiTrigger/gtmapi.dark.svg', 'dist/nodes/GtmApiTrigger/gtmapi.dark.svg'],
 ];
 
 for (const [from, to] of copies) {

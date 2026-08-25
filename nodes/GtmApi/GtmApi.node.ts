@@ -12,7 +12,7 @@ export class GtmApi implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'gtm-api',
 		name: 'gtmApi',
-		icon: { light: 'file:gtmapi.svg', dark: 'file:gtmapi.svg' },
+		icon: { light: 'file:gtmapi.svg', dark: 'file:gtmapi.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',

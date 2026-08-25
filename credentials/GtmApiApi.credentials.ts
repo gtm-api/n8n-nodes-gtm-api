@@ -9,10 +9,15 @@ import type {
 export class GtmApiApi implements ICredentialType {
 	name = 'gtmApiApi';
 
-	// One tile that reads on both themes, so both variants point at it.
-	icon: Icon = { light: 'file:gtmapi.svg', dark: 'file:gtmapi.svg' };
+	// n8n forbids pointing both variants at one file, so the dark-theme tile is
+	// genuinely inverted: light square, dark glyph.
+	icon: Icon = { light: 'file:gtmapi.svg', dark: 'file:gtmapi.dark.svg' };
 
-	displayName = 'gtm-api API';
+	// 'gtm-api API' fails n8n-nodes-base/cred-class-field-display-name-miscased,
+	// whose fixer would write 'Gtm-Api API' and break the brand rule. The rule
+	// runs the title-case package, which leaves a token containing a dot alone,
+	// so the domain form passes untouched and the brand stays lowercase.
+	displayName = 'gtm-api.com API';
 
 	documentationUrl = 'https://docs.gtm-api.com';
 
