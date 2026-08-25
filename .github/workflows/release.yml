@@ -1,6 +1,14 @@
 # Publish to npm with provenance on a v* tag. Provenance via GitHub Actions is
 # a hard requirement of n8n's verified community node tier, next to zero
 # runtime dependencies.
+#
+# Auth: the first publish needs a repo secret NPM_TOKEN (an npm granular access
+# token with read/write on this package, minted from the gtmcreator account).
+# npm's trusted publishing (OIDC) is configured per package on npmjs.com and so
+# cannot be set up before the package exists. Once 1.0.0 is on the registry,
+# switch: add the trusted publisher on npmjs.com pointing at this repo and this
+# workflow filename, then delete the NPM_TOKEN secret and the env block below.
+# id-token: write is already set, which is the only workflow-side requirement.
 name: release
 
 on:

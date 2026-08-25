@@ -21,6 +21,57 @@ Self-hosted n8n: Settings, Community Nodes, Install, enter `n8n-nodes-gtm-api`.
 
 One field: the API key. Create it at [app.gtm-api.com](https://app.gtm-api.com) (forever free plan, no card) and connect a LinkedIn account you own.
 
+## Example workflow
+
+Search a people-search URL, then invite every row from one sender. Paste into a
+blank canvas (Ctrl+V), then pick your credential and pick the sender in the
+**Sender** dropdown on the invite node.
+
+```json
+{
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "peopleSearch",
+        "operation": "searchByUrl",
+        "url": "https://www.linkedin.com/search/results/people/?keywords=head%20of%20growth"
+      },
+      "type": "n8n-nodes-gtm-api.gtmApi",
+      "typeVersion": 1,
+      "position": [0, 0],
+      "name": "Search people"
+    },
+    {
+      "parameters": {
+        "resource": "connectionRequest",
+        "operation": "send",
+        "profileId": "={{ $json.ln_id }}",
+        "note": "=Hi {{ $json.first_name }}, saw your work on outbound. Worth a chat?",
+        "allowNoNoteFallback": true
+      },
+      "type": "n8n-nodes-gtm-api.gtmApi",
+      "typeVersion": 1,
+      "position": [240, 0],
+      "name": "Send invite"
+    }
+  ],
+  "connections": {
+    "Search people": { "main": [[{ "node": "Send invite", "type": "main", "index": 0 }]] }
+  }
+}
+```
+
+No wait node is needed between the two. Pacing against that account's own daily
+budget, the warm-up ramp and the resend cooldown are enforced on the platform,
+not in the workflow.
+
+For the trigger, add a **gtm-api Trigger** node, pick an event, and activate the
+workflow: it registers the webhook on activation and removes it on deactivation.
+Each execution receives the delivery envelope as its item, so `{{ $json.type }}`
+is the event name and the event body is under `{{ $json.payload }}`. The n8n
+instance has to be reachable over public https; the platform refuses a
+non-public target URL.
+
 ## Links
 
 - API docs: [docs.gtm-api.com](https://docs.gtm-api.com)

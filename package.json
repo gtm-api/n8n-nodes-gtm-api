@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-gtm-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "n8n community nodes for gtm-api: LinkedIn outreach actions and webhook triggers on accounts you own, with safety enforced server-side.",
   "keywords": [
     "n8n-community-node-package",
@@ -21,7 +21,6 @@
   "engines": {
     "node": ">=20"
   },
-  "main": "index.js",
   "scripts": {
     "build": "tsc && node scripts/copy-assets.js",
     "dev": "tsc --watch",
