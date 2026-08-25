@@ -13,11 +13,15 @@ export class GtmApiApi implements ICredentialType {
 	// genuinely inverted: light square, dark glyph.
 	icon: Icon = { light: 'file:gtmapi.svg', dark: 'file:gtmapi.dark.svg' };
 
-	// 'gtm-api API' fails n8n-nodes-base/cred-class-field-display-name-miscased,
-	// whose fixer would write 'Gtm-Api API' and break the brand rule. The rule
-	// runs the title-case package, which leaves a token containing a dot alone,
-	// so the domain form passes untouched and the brand stays lowercase.
-	displayName = 'gtm-api.com API';
+	// The brand is lowercase and is never capitalised, so this line cannot satisfy
+	// n8n-nodes-base/cred-class-field-display-name-miscased. That rule runs
+	// title-case@3, which uppercases the first letter of every token: 'gtm-api API',
+	// 'gtm-api.com API' and 'LinkedIn API by gtm-api' all fail, and its fixer would
+	// write 'Gtm-Api API'. n8n hit the same wall with their own lowercase brand and
+	// resolved it by hardcoding 'n8n API' into the rule's EXCEPTIONS list; we are
+	// asking for the same entry upstream. Suppressed here rather than renamed.
+	// eslint-disable-next-line n8n-nodes-base/cred-class-field-display-name-miscased
+	displayName = 'gtm-api API';
 
 	documentationUrl = 'https://docs.gtm-api.com';
 
