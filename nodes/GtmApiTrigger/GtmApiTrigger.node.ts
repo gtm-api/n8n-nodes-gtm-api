@@ -5,6 +5,7 @@ import type {
 	IWebhookFunctions,
 	IWebhookResponseData,
 } from 'n8n-workflow';
+import { NodeConnectionTypes } from 'n8n-workflow';
 
 const ORCH_BASE = 'https://app.gtm-api.com/orchestration/v4';
 
@@ -15,7 +16,7 @@ export class GtmApiTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'gtm-api Trigger',
 		name: 'gtmApiTrigger',
-		icon: 'file:gtmapi.svg',
+		icon: { light: 'file:gtmapi.svg', dark: 'file:gtmapi.svg' },
 		group: ['trigger'],
 		version: 1,
 		subtitle: '={{$parameter["event"]}}',
@@ -23,7 +24,7 @@ export class GtmApiTrigger implements INodeType {
 			'Fires on gtm-api webhook events: a reply lands, a connection request is accepted, an invitation comes in',
 		defaults: { name: 'gtm-api Trigger' },
 		inputs: [],
-		outputs: ['main'],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: 'gtmApiApi', required: true }],
 		webhooks: [
 			{
@@ -108,8 +109,12 @@ export class GtmApiTrigger implements INodeType {
 							url: `${ORCH_BASE}/api/webhooks/${sid}`,
 							json: true,
 						});
-					} catch {
-						// Already gone server-side; nothing to clean up.
+					} catch (error) {
+						// Usually the subscription is already gone server-side, which is not
+						// worth failing deactivation over. Surface it rather than swallow it.
+						this.logger.warn(
+							`gtm-api Trigger: could not delete webhook ${sid}: ${(error as Error).message}`,
+						);
 					}
 					delete data.webhookSid;
 				}

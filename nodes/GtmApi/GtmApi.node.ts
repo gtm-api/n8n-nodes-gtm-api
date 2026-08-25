@@ -4,6 +4,7 @@ import type {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
+import { NodeConnectionTypes } from 'n8n-workflow';
 
 // Search/list responses arrive as { success, operation, items: [{ item }] };
 // action responses as { success, operation, action, item, result }.
@@ -11,15 +12,15 @@ export class GtmApi implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'gtm-api',
 		name: 'gtmApi',
-		icon: 'file:gtmapi.svg',
+		icon: { light: 'file:gtmapi.svg', dark: 'file:gtmapi.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description:
 			'LinkedIn outreach on accounts you own: send connection requests and messages, enrich people, run searches. Safety is enforced server-side.',
 		defaults: { name: 'gtm-api' },
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		usableAsTool: true,
 		credentials: [{ name: 'gtmApiApi', required: true }],
 		requestDefaults: {
@@ -101,7 +102,7 @@ export class GtmApi implements INodeType {
 						name: 'Enrich',
 						value: 'enrich',
 						action: 'Enrich a person profile',
-						description: 'Fetch the lite profile: name, headline, ids',
+						description: 'Fetch the lite profile: name, headline, IDs',
 						routing: {
 							request: { method: 'POST', url: '/api/linkedin-enrichment/person-lite-profile' },
 							output: {
@@ -212,24 +213,25 @@ export class GtmApi implements INodeType {
 				type: 'options',
 				displayOptions: { show: { resource: ['message'], operation: ['send'] } },
 				options: [
-					{ name: 'Member ID (ln_id)', value: 'lnId' },
-					{ name: 'Sales Navigator ID (sn_id)', value: 'snId' },
+					{ name: 'Member ID', value: 'lnId' },
+					{ name: 'Sales Navigator ID', value: 'snId' },
 					{ name: 'Existing Conversation', value: 'conversation' },
 				],
 				default: 'lnId',
 				description: 'Where the message goes: a member (new or existing thread) or an existing conversation',
 			},
 			{
-				displayName: 'Member ID (ln_id)',
+				displayName: 'Member ID',
 				name: 'lnId',
 				type: 'string',
 				required: true,
 				displayOptions: { show: { resource: ['message'], operation: ['send'], target: ['lnId'] } },
 				default: '',
+				description: 'The ln_id of the member, from gtm-api search or enrichment',
 				routing: { send: { type: 'body', property: 'ln_id' } },
 			},
 			{
-				displayName: 'Sales Navigator ID (sn_id)',
+				displayName: 'Sales Navigator ID',
 				name: 'snId',
 				type: 'string',
 				required: true,

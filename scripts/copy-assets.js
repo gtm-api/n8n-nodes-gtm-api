@@ -4,6 +4,7 @@ const { cpSync, mkdirSync } = require('fs');
 const { dirname, join } = require('path');
 
 const copies = [
+  ['credentials/gtmapi.svg', 'dist/credentials/gtmapi.svg'],
   ['nodes/GtmApi/gtmapi.svg', 'dist/nodes/GtmApi/gtmapi.svg'],
   ['nodes/GtmApiTrigger/gtmapi.svg', 'dist/nodes/GtmApiTrigger/gtmapi.svg'],
 ];

@@ -1,5 +1,6 @@
 import type {
 	IAuthenticateGeneric,
+	Icon,
 	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
@@ -7,6 +8,9 @@ import type {
 
 export class GtmApiApi implements ICredentialType {
 	name = 'gtmApiApi';
+
+	// One tile that reads on both themes, so both variants point at it.
+	icon: Icon = { light: 'file:gtmapi.svg', dark: 'file:gtmapi.svg' };
 
 	displayName = 'gtm-api API';
 
