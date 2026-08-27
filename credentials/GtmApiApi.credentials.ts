@@ -13,15 +13,14 @@ export class GtmApiApi implements ICredentialType {
 	// genuinely inverted: light square, dark glyph.
 	icon: Icon = { light: 'file:gtmapi.svg', dark: 'file:gtmapi.dark.svg' };
 
-	// The brand is lowercase and is never capitalised, so this line cannot satisfy
-	// n8n-nodes-base/cred-class-field-display-name-miscased. That rule runs
-	// title-case@3, which uppercases the first letter of every token: 'gtm-api API',
-	// 'gtm-api.com API' and 'LinkedIn API by gtm-api' all fail, and its fixer would
-	// write 'Gtm-Api API'. n8n hit the same wall with their own lowercase brand and
-	// resolved it by hardcoding 'n8n API' into the rule's EXCEPTIONS list; we are
-	// asking for the same entry upstream. Suppressed here rather than renamed.
-	// eslint-disable-next-line n8n-nodes-base/cred-class-field-display-name-miscased
-	displayName = 'gtm-api API';
+	// Not the brand name on purpose. n8n-nodes-base/cred-class-field-display-name-miscased
+	// runs title-case@3, which capitalises the first letter of every token, so every
+	// spelling carrying the lowercase brand fails it, and no inline suppression is
+	// honoured (they run eslint with inline config off). The rule's own EXCEPTIONS
+	// list is n8n hardcoding an escape for their own lowercase brand; asking for the
+	// same entry upstream is the durable fix. Until then this field says what the
+	// credential is, and the vendor is already visible on the node itself.
+	displayName = 'LinkedIn API';
 
 	documentationUrl = 'https://docs.gtm-api.com';
 
