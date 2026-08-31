@@ -307,8 +307,10 @@ export class GtmApi implements INodeType {
 				const rows = Array.isArray(response?.items)
 					? response.items.map((w) => (w && w.item ? w.item : (w as Record<string, unknown>)))
 					: [];
+				// LinkedIn's own facts only, best first. The account's `label` is the owning
+				// workspace's private operator tag and is never shown to a borrowing team.
 				return rows.map((a) => ({
-					name: String(a.display_name || a.full_name || a.nickname || a.sid),
+					name: String(a.full_name || a.nickname || a.sid),
 					value: String(a.sid),
 				}));
 			},
