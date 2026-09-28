@@ -1,6 +1,6 @@
 # n8n-nodes-gtm-api
 
-n8n community nodes for [gtm-api](https://gtm-api.com), the LinkedIn API and MCP server for AI agents. Run LinkedIn outreach on accounts you own from n8n workflows: send connection requests and messages, enrich people, run searches, and trigger on replies. Every action executes on the hosted platform, where account safety is enforced: warm-up ramps for fresh accounts, server-side daily limits, health-aware pacing. gtm-api reports 20,000+ LinkedIn accounts running at under 1% monthly ban; the method is written up at [gtm-api.com/safe-linkedin-automation](https://gtm-api.com/safe-linkedin-automation/).
+n8n community nodes for [gtm-api.com](https://gtm-api.com), the LinkedIn API and MCP server for AI agents. Run LinkedIn outreach on accounts you own from n8n workflows: send connection requests and messages, enrich people, run searches, and trigger on replies. Every action executes on the hosted platform, where account safety is enforced: warm-up ramps for fresh accounts, server-side daily limits, health-aware pacing. 20,000+ LinkedIn accounts run on that stack, and under 1% of them have ever been restricted. The method is written up at [gtm-api.com/safe-linkedin-automation](https://gtm-api.com/safe-linkedin-automation/).
 
 ## Nodes
 
@@ -11,7 +11,7 @@ n8n community nodes for [gtm-api](https://gtm-api.com), the LinkedIn API and MCP
   - People Search: Search by URL (paste a people search URL, get structured rows)
 - **gtm-api Trigger**: fires on webhook events.
   - Message Received, Connection Request Accepted, Invitation Received
-  - Registers the webhook on activation and removes it on deactivation. The n8n instance must be reachable over public https; the platform refuses non-public target URLs.
+  - Registers the webhook on activation and removes it on deactivation. The n8n instance must be reachable over public https, because the platform refuses non-public target URLs.
 
 ## Install
 
@@ -69,7 +69,7 @@ For the trigger, add a **gtm-api Trigger** node, pick an event, and activate the
 workflow: it registers the webhook on activation and removes it on deactivation.
 Each execution receives the delivery envelope as its item, so `{{ $json.type }}`
 is the event name and the event body is under `{{ $json.payload }}`. The n8n
-instance has to be reachable over public https; the platform refuses a
+instance has to be reachable over public https. The platform refuses a
 non-public target URL.
 
 ## Links
