@@ -126,11 +126,15 @@ export class GtmApi implements INodeType {
 						name: 'Search by URL',
 						value: 'searchByUrl',
 						action: 'Search people by URL',
-						description: 'Run a people search from a pasted search URL and return structured rows',
+						description: 'Run a people search from a pasted search URL and return one item per row',
 						routing: {
-							request: { method: 'POST', url: '/api/linkedin-scraping/search-people-by-url' },
+							request: { method: 'POST', url: '/api/linkedin-scraping/search-people' },
 							output: {
-								postReceive: [{ type: 'rootProperty', properties: { property: 'result' } }],
+								// result.rows holds the page; one n8n item per person so the next node runs per row
+								postReceive: [
+									{ type: 'rootProperty', properties: { property: 'result' } },
+									{ type: 'rootProperty', properties: { property: 'rows' } },
+								],
 							},
 						},
 					},

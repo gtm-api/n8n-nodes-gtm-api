@@ -46,7 +46,7 @@ blank canvas (Ctrl+V), then pick your credential and pick the sender in the
         "resource": "connectionRequest",
         "operation": "send",
         "profileId": "={{ $json.ln_id }}",
-        "note": "=Hi {{ $json.first_name }}, saw your work on outbound. Worth a chat?",
+        "note": "=Hi {{ $json.full_name.split(' ')[0] }}, saw your work on outbound. Worth a chat?",
         "allowNoNoteFallback": true
       },
       "type": "n8n-nodes-gtm-api.gtmApi",
