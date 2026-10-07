@@ -1,0 +1,19 @@
+{
+	"node": "n8n-nodes-gtm-api.gtmApi",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Sales", "Marketing", "Communication"],
+	"alias": ["LinkedIn", "Connection Request", "Enrichment", "People Search"],
+	"resources": {
+		"primaryDocumentation": [
+			{
+				"url": "https://gtm-api.com/n8n-linkedin-node/"
+			}
+		],
+		"credentialDocumentation": [
+			{
+				"url": "https://docs.gtm-api.com/authentication"
+			}
+		]
+	}
+}

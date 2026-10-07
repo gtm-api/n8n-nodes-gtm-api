@@ -15,7 +15,9 @@ n8n community nodes for [gtm-api.com](https://gtm-api.com), the LinkedIn API and
 
 ## Install
 
-Self-hosted n8n: Settings, Community Nodes, Install, enter `n8n-nodes-gtm-api`.
+It is a verified community node: search for gtm-api in the nodes panel and install it from there, on
+n8n Cloud and self-hosted alike. A self-hosted instance can also install it by name: Settings,
+Community Nodes, Install, enter `n8n-nodes-gtm-api`.
 
 ## Credentials
 

@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-gtm-api",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "n8n community nodes for gtm-api: LinkedIn outreach actions and webhook triggers on accounts you own, with safety enforced server-side.",
   "keywords": [
     "n8n-community-node-package",
