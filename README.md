@@ -7,7 +7,7 @@ n8n community nodes for [gtm-api.com](https://gtm-api.com), the LinkedIn API and
 - **gtm-api**: actions on your sender accounts.
   - Connection Request: Send (note support, optional no-note fallback, resend cooldowns respected server-side)
   - Message: Send (to a member by ln_id / sn_id, or into an existing conversation)
-  - Person: Enrich (lite profile: name, headline, canonical ids)
+  - Person: Enrich (lite profile: full name, profile slug, LinkedIn IDs, connection degree)
   - People Search: Search by URL (paste a people search URL, get structured rows)
 - **gtm-api Trigger**: fires on webhook events.
   - Message Received, Connection Request Accepted, Invitation Received

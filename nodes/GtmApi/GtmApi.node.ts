@@ -102,7 +102,7 @@ export class GtmApi implements INodeType {
 						name: 'Enrich',
 						value: 'enrich',
 						action: 'Enrich a person profile',
-						description: 'Fetch the lite profile: name, headline, IDs',
+						description: 'Fetch the lite profile: full name, profile slug, LinkedIn IDs and connection degree',
 						routing: {
 							request: { method: 'POST', url: '/api/linkedin-enrichment/person-lite-profile' },
 							output: {
