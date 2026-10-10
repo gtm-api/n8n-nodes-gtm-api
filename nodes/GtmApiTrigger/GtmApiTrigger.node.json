@@ -2,7 +2,7 @@
 	"node": "n8n-nodes-gtm-api.gtmApiTrigger",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Sales", "Marketing", "Communication"],
+	"categories": ["Sales", "Marketing & Content", "Communication"],
 	"alias": ["LinkedIn"],
 	"resources": {
 		"primaryDocumentation": [
